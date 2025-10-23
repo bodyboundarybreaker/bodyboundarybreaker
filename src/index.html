@@ -7,8 +7,12 @@
   <link rel="stylesheet" href="./assets/style.css" />
 </head>
 <body>
-  <!-- Decorative background image (PNG) applied via CSS for crisp scaling -->
-  <div class="bg-svg" aria-hidden="true"></div>
+  <!-- Decorative background image (PNG) applied via CSS for crisp scaling.
+       An inline <img> is included as a robust fallback and for editors that
+       expect image references in HTML. It's aria-hidden and won't be announced. -->
+  <div class="bg-svg" aria-hidden="true">
+    <img src="./assets/COVERLETTERNEON.png" alt="" class="bg-image" aria-hidden="true" />
+  </div>
 
   <header class="site-header" role="banner">
     <div class="header-inner">
