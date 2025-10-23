@@ -4,6 +4,7 @@ on:
     branches:
       - main
 
+# Explicitly grant id-token permission which Actions/configure-pages may require
 permissions:
   contents: read
   pages: write
@@ -15,15 +16,14 @@ jobs:
     permissions:
       contents: read
       pages: write
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # If you need a build step (npm, Hugo, etc.), add it here.
-      # For static files already in src/, we just upload the artifact.
-
+      # If you have a build step (npm, hugo, etc.), run it here and point 'path' to the output directory.
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v1
         with:
           path: src
 
@@ -33,12 +33,11 @@ jobs:
     environment:
       name: github-pages
     permissions:
-      contents: read
       pages: write
-      id-token: write # This is crucial for OIDC token access
+      id-token: write
     steps:
       - name: Configure Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v3
 
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v1
