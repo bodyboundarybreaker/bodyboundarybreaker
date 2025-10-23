@@ -48,6 +48,80 @@ body{
   opacity:0.92;
 }
 
+/* Focus overlay provides a subtle white-ish halo behind the header + hero
+   so logo and heading read clearly against the image. It is positioned
+   behind content but above the background image. */
+.focus-overlay{
+  position:fixed;
+  inset:0;
+  z-index:1; /* behind header (z-index:2) but above bg (z-index:0) */
+  pointer-events:none;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+}
+.focus-overlay::before{
+  content:"";
+  position:absolute;
+  top:6.5%; /* place the halo around the header/hero area */
+  left:50%;
+  transform:translateX(-50%);
+  width:min(78vw,980px);
+  height:min(40vh,420px);
+  border-radius:50%;
+  /* clear center to slight white center, then fades to transparent at edges */
+  background: radial-gradient(circle at 50% 40%, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.08) 22%, rgba(255,255,255,0.03) 40%, rgba(255,255,255,0) 68%);
+  filter: blur(18px);
+  opacity:1;
+}
+
+/* Small translucent note strip under the header */
+.site-note{
+  position:relative;
+  z-index:2;
+  margin:12px auto 6px;
+  max-width:980px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  color: #eaf2ff;
+  padding:8px 14px;
+  border-radius:10px;
+  text-align:center;
+  font-weight:600;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+/* Tweak overlay and note on small screens */
+@media (max-width:520px){
+  .focus-overlay::before{ top:9%; width:92vw; height:34vh; filter: blur(14px); }
+  .site-note{ margin:10px 16px; font-size:0.95rem }
+}
+
+/* Focus overlay sitting above the background but under site content. This
+   creates a soft white-ish halo behind the centered logo and headline to
+   improve contrast without hard panels. */
+.focus-overlay{
+  position:fixed;
+  inset:0;
+  z-index:1; /* between bg (0) and content (2) */
+  pointer-events:none;
+  /* radial gradient: stronger in the center area (near header/hero),
+     fading to transparent towards edges */
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(255,255,255,0.78) 0%,
+    rgba(255,255,255,0.45) 18%,
+    rgba(255,255,255,0.12) 36%,
+    transparent 62%
+  );
+  mix-blend-mode: normal; /* avoid color artifacts; change to 'screen' if desired */
+  opacity:0.95;
+}
+
+@media (max-width:520px){
+  /* So the overlay doesn't wash out small-screen text, reduce intensity */
+  .focus-overlay{ opacity:0.85; background: radial-gradient(circle at 50% 28%, rgba(255,255,255,0.54) 0%, rgba(255,255,255,0.28) 20%, rgba(255,255,255,0.06) 40%, transparent 70%); }
+}
+
 /* Header */
 .site-header{
   position:relative;

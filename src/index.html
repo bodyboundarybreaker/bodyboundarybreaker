@@ -8,17 +8,29 @@
 </head>
 <body>
   <!-- Decorative background image (PNG) applied via CSS for crisp scaling.
-       An inline <img> is included as a robust fallback and for editors that
-       expect image references in HTML. It's aria-hidden and won't be announced. -->
+    An inline <img> is included as a robust fallback and for editors that
+    expect image references in HTML. It's aria-hidden and won't be announced. -->
   <div class="bg-svg" aria-hidden="true">
     <img src="./assets/COVERLETTERNEON.png" alt="" class="bg-image" aria-hidden="true" />
   </div>
+
+  <!-- Subtle focus overlay behind header/hero to improve contrast around logo and title -->
+  <div class="focus-overlay" aria-hidden="true"></div>
+
+  <!-- Soft focus overlay (transparent -> white -> transparent) to improve
+    contrast around the centered logo and headline. It's decorative only. -->
+  <div class="focus-overlay" aria-hidden="true"></div>
 
   <header class="site-header" role="banner">
     <div class="header-inner">
   <img src="./assets/bbblogo.png" alt="Body Boundary Breaker logo" class="company-logo" />
     </div>
   </header>
+
+  <!-- Friendly under-construction notice about the upcoming podcast -->
+  <div class="site-note" role="status">
+    We're updating the site to include our new podcast — fresh episodes and helpful resources are coming soon. Thanks for checking in!
+  </div>
 
   <main class="hero" role="main" aria-labelledby="hero-heading">
     <h1 id="hero-heading" class="headline">Body Boundary Breaker</h1>
