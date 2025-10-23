@@ -1,23 +1,31 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Body Boundary Breaker — Demo</title>
-  <link rel="stylesheet" href="./assets/style.css">
+  <link rel="stylesheet" href="./assets/style.css" />
 </head>
-<body>
-  <header class="site-header">
-    <img src="./assets/logo.svg" alt="Logo" class="logo" />
-    <h1>Body Boundary Breaker — Demo</h1>
+<body class="hero-bg">
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <img src="./assets/bbblogo.png" alt="Body Boundary Breaker logo" class="company-logo" />
+      <div class="site-title-wrap">
+        <h1 class="site-title">Body Boundary Breaker</h1>
+        <p class="site-sub">Demo</p>
+      </div>
+    </div>
   </header>
 
-  <main class="content">
+  <main class="content card" role="main" aria-labelledby="main-heading">
+    <h2 id="main-heading" class="sr-only">Demo content</h2>
+
     <p>This is a simple index page that embeds its resources from the local <code>assets/</code> folder.</p>
 
-    <section class="clock">
-      <strong>Current UTC time:</strong>
-      <div id="utc-time">—</div>
+    <section class="clock" aria-live="off">
+      <strong>Current local time:</strong>
+      <div id="local-time" class="time-display">—</div>
+      <div id="tz" class="tz muted">—</div>
     </section>
 
     <section class="actions">
@@ -26,7 +34,7 @@
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer" role="contentinfo">
     <small>Generated: <span id="build-time"></span></small>
   </footer>
 
