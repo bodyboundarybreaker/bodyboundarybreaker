@@ -52,7 +52,7 @@ body{
 .site-header{
   position:relative;
   z-index:2;
-  padding:28px 20px;
+  padding:18px 20px; /* reduced to tighten gap to the hero */
   display:flex;
   justify-content:center;
   align-items:center;
@@ -71,7 +71,8 @@ body{
   position:relative;
   z-index:2;
   margin:auto;
-  padding:40px 20px 80px;
+  padding:18px 20px 80px; /* reduce top padding so headline sits closer to logo */
+  margin-top: -4px; /* slight tuck to further close visual gap */
   max-width:1100px;
   text-align:center;
 }
