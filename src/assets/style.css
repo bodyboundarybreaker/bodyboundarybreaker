@@ -1,31 +1,122 @@
 :root{
-  --bg:#0f1724;
-  --card:#0b1220;
-  --muted:#9aa4b2;
-  --accent:#60a5fa;
-  --accent-2:#7c3aed;
-  --text:#e6eef6;
+  --bg-dark: #041221;
+  --muted: #9aa4b2;
+  --accent: #60a5fa;
+  --accent-2: #7c3aed;
+  --text: #e6eef6;
+  --card-bg: rgba(8,12,18,0.62);
+  --glass-border: rgba(255,255,255,0.06);
 }
+
+/* Reset/tidy */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
   margin:0;
   font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background:linear-gradient(180deg,var(--bg),#021124);
   color:var(--text);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:40px;
+  flex-direction:column;
+  min-height:100vh;
+  line-height:1.4;
+  background-color:var(--bg-dark);
 }
-.site-header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
-.logo{width:56px;height:56px}
-.content{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:24px;border-radius:12px;max-width:760px;width:100%;box-shadow:0 6px 24px rgba(2,6,23,0.6)}
-.clock{margin-top:12px;font-size:16px;color:var(--muted)}
-#utc-time{font-family:monospace;margin-top:6px}
+
+/* Hero background: layered gradient over image, cover scale to prevent distortion */
+body.hero-bg{
+  background-image:
+    linear-gradient(180deg, rgba(2,6,23,0.55), rgba(2,6,23,0.55)),
+    url("./assets/COVERLETTERNEON.png");
+  background-position: center center;
+  background-size: cover; /* scales to fill while preserving aspect ratio */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Header */
+.site-header{
+  padding:18px 12px;
+  width:100%;
+  display:flex;
+  justify-content:center;
+}
+.header-inner{
+  width:100%;
+  max-width:1100px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding-inline:8px;
+}
+
+/* Logo: keep aspect ratio, no distortion */
+.company-logo{
+  height:64px;
+  width:auto;
+  max-width:240px;
+  display:block;
+  object-fit:contain;
+  image-rendering:optimizeQuality;
+  filter:drop-shadow(0 10px 30px rgba(0,0,0,0.6));
+  border-radius:8px;
+}
+
+/* Title */
+.site-title-wrap{display:flex;flex-direction:column;gap:2px}
+.site-title{margin:0;font-size:20px;font-weight:600;letter-spacing:0.2px}
+.site-sub{margin:0;color:var(--muted);font-size:13px}
+
+/* Main content card (glass effect) */
+.content{
+  width:100%;
+  max-width:880px;
+  margin:26px auto;
+  padding:22px;
+  border-radius:14px;
+  background:var(--card-bg);
+  border:1px solid var(--glass-border);
+  box-shadow:0 14px 50px rgba(2,6,23,0.6);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px);
+  color:var(--text);
+}
+
+/* Time display */
+.clock{margin-top:12px;font-size:15px;color:var(--muted)}
+.time-display{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;font-size:18px;margin-top:6px}
+.tz{font-size:13px;margin-top:4px;color:var(--muted)}
+
+/* Actions */
 .actions{margin-top:18px}
-button{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;color:#fff;padding:10px 14px;border-radius:8px;cursor:pointer}
+button{
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  border:none;color:#fff;padding:10px 14px;border-radius:8px;cursor:pointer;
+  box-shadow:0 8px 28px rgba(96,165,250,0.12);
+}
 button:active{transform:translateY(1px)}
-.site-footer{margin-top:18px;color:var(--muted)}
+.site-footer{margin:18px auto 40px;color:var(--muted);text-align:center;max-width:880px;padding-inline:12px}
+
+/* Accessibility helpers */
+.sr-only{
+  position:absolute!important;
+  height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;border:0;padding:0;margin:-1px;
+}
+
+/* Responsive adjustments */
+@media (max-width:900px){
+  .company-logo{height:56px}
+  .content{margin:20px 18px;padding:18px}
+  .site-title{font-size:18px}
+}
+
+@media (max-width:560px){
+  body.hero-bg{background-attachment: scroll} /* avoid fixed background on mobile for performance */
+  .header-inner{align-items:center;gap:10px}
+  .company-logo{height:48px}
+  .site-title-wrap{display:none} /* keep header compact on very small screens; logo is anchor */
+  .content{margin:14px 12px;padding:14px;border-radius:12px}
+  .time-display{font-size:16px}
+  button{padding:9px 12px}
+}
