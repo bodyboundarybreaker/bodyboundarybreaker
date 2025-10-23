@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Body Boundary Breaker — Demo</title>
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <img src="./assets/logo.svg" alt="Logo" class="logo" />
+    <h1>Body Boundary Breaker — Demo</h1>
+  </header>
+
+  <main class="content">
+    <p>This is a simple index page that embeds its resources from the local <code>assets/</code> folder.</p>
+
+    <section class="clock">
+      <strong>Current UTC time:</strong>
+      <div id="utc-time">—</div>
+    </section>
+
+    <section class="actions">
+      <button id="greet">Click to greet</button>
+      <p id="greeting" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>Generated: <span id="build-time"></span></small>
+  </footer>
+
+  <script src="./assets/script.js" defer></script>
+</body>
+</html>
