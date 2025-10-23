@@ -31,7 +31,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       pages: write
+      id-token: write # This is crucial for OIDC token access
     steps:
       - name: Configure Pages
         uses: actions/configure-pages@v4
