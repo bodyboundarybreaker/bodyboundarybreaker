@@ -16,7 +16,12 @@ jobs:
       contents: read
       pages: write
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # If you need a build step (npm, Hugo, etc.), add it here.
+      # For static files already in src/, we just upload the artifact.
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v1
         with:
@@ -28,4 +33,8 @@ jobs:
     permissions:
       pages: write
     steps:
-      - uses: actions/deploy-pages@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v3
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
