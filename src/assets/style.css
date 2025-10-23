@@ -1,11 +1,10 @@
 :root{
-  --bg-dark: #041221;
-  --muted: #9aa4b2;
-  --accent: #60a5fa;
-  --accent-2: #7c3aed;
-  --text: #e6eef6;
-  --card-bg: rgba(8,12,18,0.62);
-  --glass-border: rgba(255,255,255,0.06);
+  --bg:#071021;
+  --panel:#0f1724;
+  --neon-pink:#ff2d95;
+  --neon-cyan:#00e6ff;
+  --muted:#9aa4b2;
+  --glass: rgba(255,255,255,0.03);
 }
 
 /* Reset/tidy */
@@ -13,110 +12,111 @@
 html,body{height:100%}
 body{
   margin:0;
-  font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  color:var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background:var(--bg);
+  color:#e8eef6;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
+  line-height:1.35;
   display:flex;
   flex-direction:column;
   min-height:100vh;
-  line-height:1.4;
-  background-color:var(--bg-dark);
+  overflow-x:hidden;
 }
 
-/* Hero background: layered gradient over image, cover scale to prevent distortion */
-body.hero-bg{
-  background-image:
-    linear-gradient(180deg, rgba(2,6,23,0.55), rgba(2,6,23,0.55)),
-    url("./assets/COVERLETTERNEON.png");
-  background-position: center center;
-  background-size: cover; /* scales to fill while preserving aspect ratio */
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+.bg-svg{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:0.65;
+  filter: saturate(1.05) contrast(1.02) blur(0.6px);
+}
+.bg-svg .bg-image{
+  width:100%;
+  height:100%;
+  object-fit:cover; /* preserves aspect ratio without distortion */
+  display:block;
 }
 
 /* Header */
 .site-header{
-  padding:18px 12px;
-  width:100%;
+  position:relative;
+  z-index:2;
+  padding:28px 20px;
   display:flex;
   justify-content:center;
-}
-.header-inner{
-  width:100%;
-  max-width:1100px;
-  display:flex;
   align-items:center;
-  gap:16px;
-  padding-inline:8px;
 }
+.header-inner{max-width:1100px;width:100%;display:flex;justify-content:center}
 
 /* Logo: keep aspect ratio, no distortion */
 .company-logo{
-  height:64px;
-  width:auto;
-  max-width:240px;
+  width:clamp(160px, 28vw, 420px);
+  height:auto;
   display:block;
-  object-fit:contain;
-  image-rendering:optimizeQuality;
-  filter:drop-shadow(0 10px 30px rgba(0,0,0,0.6));
-  border-radius:8px;
 }
 
-/* Title */
-.site-title-wrap{display:flex;flex-direction:column;gap:2px}
-.site-title{margin:0;font-size:20px;font-weight:600;letter-spacing:0.2px}
-.site-sub{margin:0;color:var(--muted);font-size:13px}
-
-/* Main content card (glass effect) */
-.content{
-  width:100%;
-  max-width:880px;
-  margin:26px auto;
-  padding:22px;
-  border-radius:14px;
-  background:var(--card-bg);
-  border:1px solid var(--glass-border);
-  box-shadow:0 14px 50px rgba(2,6,23,0.6);
-  backdrop-filter: blur(10px) saturate(120%);
-  -webkit-backdrop-filter: blur(10px);
-  color:var(--text);
+/* Hero section */
+.hero{
+  position:relative;
+  z-index:2;
+  margin:auto;
+  padding:40px 20px 80px;
+  max-width:1100px;
+  text-align:center;
+}
+.headline{
+  font-size:clamp(28px,6vw,56px);
+  margin:6px 0 8px;
+  letter-spacing:-0.01em;
+  color:linear-gradient(90deg,var(--neon-cyan),var(--neon-pink));
+  font-weight:700;
 }
 
-/* Time display */
-.clock{margin-top:12px;font-size:15px;color:var(--muted)}
-.time-display{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;font-size:18px;margin-top:6px}
-.tz{font-size:13px;margin-top:4px;color:var(--muted)}
-
-/* Actions */
-.actions{margin-top:18px}
-button{
-  background:linear-gradient(90deg,var(--accent),var(--accent-2));
-  border:none;color:#fff;padding:10px 14px;border-radius:8px;cursor:pointer;
-  box-shadow:0 8px 28px rgba(96,165,250,0.12);
+.tagline{
+  margin:0 auto 12px;
+  color:var(--neon-cyan);
+  font-weight:600;
+  font-size:1.05rem;
 }
-button:active{transform:translateY(1px)}
-.site-footer{margin:18px auto 40px;color:var(--muted);text-align:center;max-width:880px;padding-inline:12px}
+.sub{color:var(--muted);max-width:680px;margin:12px auto 24px}
 
-/* Accessibility helpers */
-.sr-only{
-  position:absolute!important;
-  height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;border:0;padding:0;margin:-1px;
+/* Call to action buttons */
+.cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.btn{
+  text-decoration:none;
+  display:inline-block;
+  padding:12px 20px;
+  border-radius:10px;
+  font-weight:600;
+  transition:transform .14s ease, box-shadow .14s ease;
+}
+.btn.primary{
+  background:linear-gradient(90deg,var(--neon-cyan),var(--neon-pink));
+  color:#041019;
+  box-shadow:0 8px 30px rgba(0,0,0,0.45), 0 0 30px rgba(0,230,255,0.06);
+}
+.btn.ghost{
+  background:transparent;
+  color:var(--neon-cyan);
+  border:1px solid rgba(255,255,255,0.06);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,0.01);
+}
+.btn:hover{transform:translateY(-3px)}
+
+/* Footer */
+.site-footer{position:relative;z-index:2;padding:26px 20px;text-align:center;color:var(--muted)}
+
+/* small screens */
+@media (max-width:520px){
+  .company-logo{width:54vw}
+  .headline{font-size:28px}
+  .tagline{font-size:1rem}
 }
 
-/* Responsive adjustments */
-@media (max-width:900px){
-  .company-logo{height:56px}
-  .content{margin:20px 18px;padding:18px}
-  .site-title{font-size:18px}
-}
-
-@media (max-width:560px){
-  body.hero-bg{background-attachment: scroll} /* avoid fixed background on mobile for performance */
-  .header-inner{align-items:center;gap:10px}
-  .company-logo{height:48px}
-  .site-title-wrap{display:none} /* keep header compact on very small screens; logo is anchor */
-  .content{margin:14px 12px;padding:14px;border-radius:12px}
-  .time-display{font-size:16px}
-  button{padding:9px 12px}
+/* high-contrast fallback for users */
+@media (prefers-contrast: more){
+  :root{--bg:#000;--panel:#0b0b0b}
+  .bg-svg{opacity:0.85;filter:none}
 }

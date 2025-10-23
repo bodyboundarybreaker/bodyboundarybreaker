@@ -3,41 +3,40 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Body Boundary Breaker — Demo</title>
+  <title>Body Boundary Breaker — Landing</title>
   <link rel="stylesheet" href="./assets/style.css" />
 </head>
-<body class="hero-bg">
+<body>
+  <!-- Decorative background SVG (scaled responsively) -->
+  <div class="bg-svg" aria-hidden="true">
+    <img src="./assets/coverletterneon.svg" alt="" class="bg-image" />
+  </div>
+
   <header class="site-header" role="banner">
     <div class="header-inner">
-      <img src="./assets/bbblogo.png" alt="Body Boundary Breaker logo" class="company-logo" />
-      <div class="site-title-wrap">
-        <h1 class="site-title">Body Boundary Breaker</h1>
-        <p class="site-sub">Demo</p>
-      </div>
+      <img src="./assets/bbblogo.svg" alt="Body Boundary Breaker logo" class="company-logo" />
     </div>
   </header>
 
-  <main class="content card" role="main" aria-labelledby="main-heading">
-    <h2 id="main-heading" class="sr-only">Demo content</h2>
+  <main class="hero" role="main" aria-labelledby="hero-heading">
+    <h1 id="hero-heading" class="headline">Body Boundary Breaker</h1>
+    <p class="tagline">Clear boundaries. Confident communication. Better outcomes.</p>
 
-    <p>This is a simple index page that embeds its resources from the local <code>assets/</code> folder.</p>
+    <p class="sub">We help professionals build practical, sustainable boundary practices that improve well-being and productivity.</p>
 
-    <section class="clock" aria-live="off">
-      <strong>Current local time:</strong>
-      <div id="local-time" class="time-display">—</div>
-      <div id="tz" class="tz muted">—</div>
-    </section>
-
-    <section class="actions">
-      <button id="greet">Click to greet</button>
-      <p id="greeting" aria-live="polite"></p>
-    </section>
+    <div class="cta-row">
+      <a href="#contact" class="btn primary">Get Started</a>
+      <a href="#learn" class="btn ghost">Learn more</a>
+    </div>
   </main>
 
   <footer class="site-footer" role="contentinfo">
-    <small>Generated: <span id="build-time"></span></small>
+    <small>&copy; <span id="year"></span> Body Boundary Breaker</small>
   </footer>
 
-  <script src="./assets/script.js" defer></script>
+  <script>
+    // small inline convenience script only (no external JS asset used)
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
